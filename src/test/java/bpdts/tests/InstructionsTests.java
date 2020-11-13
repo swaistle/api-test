@@ -3,6 +3,8 @@ package bpdts.tests;
 import bpdts.utility.Environment;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -10,11 +12,13 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 
 public class InstructionsTests {
+    private static final Logger LOG = LoggerFactory.getLogger(InstructionsTests.class);
 
     public String uri = Environment.getAppUrl() + "/instructions";
 
     @Test
-    public void assertStatusEquals200() throws IOException {
+    public void assertStatusEquals200() {
+        LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
                 .get(uri)
@@ -23,7 +27,8 @@ public class InstructionsTests {
                 .statusCode(200);
     }
 
-    @Test public void assertResponse() throws IOException {
+    @Test public void assertResponse() {
+        LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
                 .get(uri)
@@ -35,6 +40,7 @@ public class InstructionsTests {
 
     @Test
     public void assertSchema() {
+        LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
                 .get(uri)
