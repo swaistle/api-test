@@ -1,8 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-06/schema",
   "type": "array",
-  "items": [
-    {
+  "items": {
       "type": "object",
       "properties": {
         "id": {
@@ -26,16 +25,15 @@
         "longitude": {
           "type": "number"
         }
-      },
-      "required": [
-        "id",
-        "first_name",
-        "last_name",
-        "email",
-        "ip_address",
-        "latitude",
-        "longitude"
-      ]
-    }
+      }
+    },
+  "required": [
+    "id",
+    "first_name",
+    "last_name",
+    "email",
+    "ip_address",
+    "latitude",
+    "longitude"
   ]
 }

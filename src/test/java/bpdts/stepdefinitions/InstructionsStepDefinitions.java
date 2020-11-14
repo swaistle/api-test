@@ -1,20 +1,20 @@
-package bpdts.tests;
+package bpdts.stepdefinitions;
 
-import bpdts.utility.Environment;
+import bpdts.pages.Environment;
+import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class InstructionsTests {
-    private static final Logger LOG = LoggerFactory.getLogger(InstructionsTests.class);
+public class InstructionsStepDefinitions {
+    private static final Logger LOG = LoggerFactory.getLogger(InstructionsStepDefinitions.class);
 
     public String uri = Environment.getAppUrl() + "/instructions";
 
-    @Test
+    @Given("the instructions api status code is 200")
     public void assertStatusEquals200() {
         LOG.debug("uri: " + uri);
         RestAssured.given()
@@ -25,7 +25,8 @@ public class InstructionsTests {
                 .statusCode(200);
     }
 
-    @Test public void assertResponse() {
+    @Given("the instructions api response is as expected")
+    public void assertResponse() {
         LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
@@ -36,7 +37,7 @@ public class InstructionsTests {
                         equalTo("Create a short automated test for this API. Check that the data returned by the API is valid, and that ensure that each valid operation can be successfully called for each endpoint. Once you've built the tests, push the answer to Github or Gitlab, and send us a link. "));
     }
 
-    @Test
+    @Given("the instructions api response matches the schema")
     public void assertSchema() {
         LOG.debug("uri: " + uri);
         RestAssured.given()

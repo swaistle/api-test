@@ -1,4 +1,4 @@
-package bpdts.utility;
+package bpdts.pages;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +12,8 @@ public class RandomCityGenerator {
         cities.add("Kax");
         //English characters, multiple results
         cities.add("London");
+        //No result
+        cities.add("Newcastle");
         //Special characters
         cities.add("Al Bayḑā’");
         cities.add("Shi’ao");
@@ -20,7 +22,6 @@ public class RandomCityGenerator {
         cities.add("Dubova (Driloni)");
         //Longest string
         cities.add("Sainte-Anne-des-Monts");
-        cities.add("Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu");
         //Non-english characters
         cities.add("Krzyżowice");
         cities.add("Älvsjö");
