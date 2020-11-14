@@ -52,6 +52,7 @@ public class UserIdStepDefinitions {
                     .get(uri)
                     .then()
                     .assertThat()
+                    .statusCode(200)
                     .body(matchesJsonSchemaInClasspath("schemas/UserIdSchema.json"));
         }
     }
