@@ -26,14 +26,26 @@ public class UserIdTest {
     }
 
     @Test
-    public void assertSchema() {
+    public void assertStatusEquals404() {
+        String uri = Environment.getAppUrl() + "/user/" + 1001;
         LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
                 .get(uri)
                 .then()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("UserIdSchema.json"));
+                .statusCode(404);
+    }
+
+    @Test
+    public void assertSchemaOneResult() {
+        LOG.debug("uri: " + uri);
+        RestAssured.given()
+                .when()
+                .get(uri)
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schemas/UserIdSchema.json"));
     }
 
 }

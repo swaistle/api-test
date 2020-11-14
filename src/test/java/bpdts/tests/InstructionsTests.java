@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -46,7 +44,7 @@ public class InstructionsTests {
                 .get(uri)
                 .then()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("InstructionsSchema.json"));
+                .body(matchesJsonSchemaInClasspath("schemas/InstructionsSchema.json"));
     }
 
 }

@@ -2,7 +2,6 @@ package bpdts.tests;
 
 import bpdts.utility.Environment;
 import bpdts.utility.RandomCityGenerator;
-import bpdts.utility.RandomNumberGenerator;
 import io.restassured.RestAssured;
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -14,15 +13,11 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 public class CityTest {
     private static final Logger LOG = LoggerFactory.getLogger(CityTest.class);
 
-    String rawString = RandomCityGenerator.randomCity();
-    byte[] bytes = StringUtils.getBytesUtf8(rawString);
-
-    String utf8EncodedString = StringUtils.newStringUtf8(bytes);
-
-    public String uri = Environment.getAppUrl() + "/city/" + utf8EncodedString + "/users";
+    public String uri = Environment.getAppUrl() + "/city/%s/users";
 
     @Test
     public void assertStatusEquals200() {
+        String uri = Environment.getAppUrl() + "/city/" + RandomCityGenerator.randomCity() + "/users";
         LOG.debug("uri: " + uri);
         RestAssured.given()
                 .when()
@@ -33,14 +28,46 @@ public class CityTest {
     }
 
     @Test
-    public void assertSchema() {
-        LOG.debug("uri: " + uri);
+    public void assertSchemaOneResult() {
+        String formattedUri = String.format(uri, encodeString("Kax"));
+        LOG.debug("uri: " + formattedUri);
         RestAssured.given()
                 .when()
-                .get(uri)
+                .get(formattedUri)
                 .then()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("CitySchema.json"));
+                .body(matchesJsonSchemaInClasspath("schemas/CitySchema.json"));
+    }
+
+    @Test
+    public void assertSchemaMultipleResult() {
+        String formattedUri = String.format(uri, encodeString("London"));
+        LOG.debug("uri: " + formattedUri);
+        RestAssured.given()
+                .when()
+                .get(formattedUri)
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schemas/CitySchema.json"));
+    }
+
+    @Test
+    public void assertSchemaSpecialCharacters() {
+        String formattedUri = String.format(uri, encodeString("Al Bayḑā’"));
+        LOG.debug("uri: " + formattedUri);
+        RestAssured.given()
+                .when()
+                .get(formattedUri)
+                .then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("schemas/CitySchema.json"));
+    }
+
+    private String encodeString(String string) {
+        String rawString = string;
+        byte[] bytes = StringUtils.getBytesUtf8(rawString);
+
+        return StringUtils.newStringUtf8(bytes);
     }
 
 }

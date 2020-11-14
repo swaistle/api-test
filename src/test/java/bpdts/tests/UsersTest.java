@@ -32,7 +32,7 @@ public class UsersTest {
                 .get(uri)
                 .then()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("UsersSchema.json"));
+                .body(matchesJsonSchemaInClasspath("schemas/UsersSchema.json"));
     }
 
 }

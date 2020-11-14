@@ -8,26 +8,30 @@ public class RandomCityGenerator {
 
     public static String randomCity() {
         List<String> cities = new LinkedList<String>();
+        //English characters, one result
         cities.add("Kax");
-        cities.add("Kundung");
-        cities.add("Qaryat al Qābil");
-        cities.add("Standerton");
-        cities.add("Shuishi");
-        cities.add("Budapest");
-        cities.add("Danao");
-        cities.add("Cimuncang");
-        cities.add("Bamenda");
-        cities.add("Armamar");
-        cities.add("Shuibatang");
-        cities.add("Los Angeles");
-        cities.add("Antsohihy");
-        cities.add("Lagunas");
-        cities.add("Caqu");
-        cities.add("Polowat");
-        cities.add("Labansari");
+        //English characters, multiple results
+        cities.add("London");
+        //Special characters
+        cities.add("Al Bayḑā’");
+        cities.add("Shi’ao");
+        cities.add("Bonneuil-sur-Marne");
+        cities.add("Caldas da Felgueira");
+        cities.add("Dubova (Driloni)");
+        //Longest string
+        cities.add("Sainte-Anne-des-Monts");
+        cities.add("Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu");
+        //Non-english characters
+        cities.add("Krzyżowice");
+        cities.add("Älvsjö");
+        cities.add("Vairão");
+        cities.add("Phú Lộc");
+        cities.add("Saint-Égrève");
+        cities.add("Aţ Ţaybah");
+        cities.add("Chợ Mới");
+        cities.add("Trần Văn Thời");
+        cities.add("Gœsdorf");
         cities.add("كاف الجاع");
-        cities.add("Sidi Yahya Ou Saad");
-        cities.add("Cinagrog Girang");
 
         Random random = new Random();
         int randomNumber = random.nextInt(cities.size());
