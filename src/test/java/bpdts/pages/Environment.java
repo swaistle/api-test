@@ -1,4 +1,4 @@
-package bpdts.utility;
+package bpdts.pages;
 
 import lombok.Getter;
 import org.slf4j.Logger;
