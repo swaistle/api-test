@@ -21,7 +21,7 @@ public class RandomCityGenerator {
         cities.add("Caldas da Felgueira");
         cities.add("Dubova (Driloni)");
         //Longest string
-        cities.add("Sainte-Anne-des-Monts");
+        cities.add("Morcellemont Saint André");
         //Non-english characters
         cities.add("Krzyżowice");
         cities.add("Älvsjö");
