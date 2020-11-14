@@ -36,4 +36,16 @@ public class UsersStepDefinitions {
                 .body(matchesJsonSchemaInClasspath("schemas/UsersSchema.json"));
     }
 
+    @Given("^the users api content-type is application/json$")
+    public void assertContentType(){
+        LOG.debug("uri: " + uri);
+
+        RestAssured.given()
+                .when()
+                .get(uri)
+                .then()
+                .assertThat()
+                .header("content-type", "application/json");
+    }
+
 }

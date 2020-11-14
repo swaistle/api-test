@@ -4,7 +4,7 @@ Feature: City API request
     Given the city api status code is 200
 
   Scenario: Single array response matches the agreed schema
-    Given user from Kax matches the schema
+    Given user from Kundung matches the schema
 
   Scenario: Multiple array response matches the agreed schema
     Given users from London matches the schema
@@ -25,6 +25,7 @@ Feature: City API request
       | Krzyżowice    |
       | Älvsjö        |
       | Vairão        |
+      | Łubniany      |
       | Phú Lộc       |
       | Saint-Égrève  |
       | Aţ Ţaybah     |
@@ -43,4 +44,5 @@ Feature: City API request
       | Morcellemont Saint André                                                              |
       | Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu |
 
-
+  Scenario: Header Content-type is application/json
+    Given the city api content-type is application/json

@@ -8,3 +8,6 @@ Feature: Instructions API request
 
   Scenario: Response matches the agreed schema
     Given the instructions api response matches the schema
+
+  Scenario: Header Content-type is application/json
+    Given the instructions api content-type is application/json

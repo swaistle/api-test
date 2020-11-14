@@ -8,3 +8,6 @@ Feature: User Id API request
 
   Scenario: Response matches the agreed schema
     Given the user id api response matches the schema
+
+  Scenario: Header Content-type is application/json
+    Given the user id api content-type is application/json

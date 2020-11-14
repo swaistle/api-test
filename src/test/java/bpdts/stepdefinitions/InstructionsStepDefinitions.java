@@ -1,6 +1,8 @@
 package bpdts.stepdefinitions;
 
+import bpdts.pages.EncodeString;
 import bpdts.pages.Environment;
+import bpdts.pages.RandomCityGenerator;
 import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
 import org.slf4j.Logger;
@@ -46,6 +48,19 @@ public class InstructionsStepDefinitions {
                 .then()
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schemas/InstructionsSchema.json"));
+    }
+
+
+    @Given("^the instructions api content-type is application/json$")
+    public void assertContentType(){
+        LOG.debug("uri: " + uri);
+
+        RestAssured.given()
+                .when()
+                .get(uri)
+                .then()
+                .assertThat()
+                .header("content-type", "application/json");
     }
 
 }

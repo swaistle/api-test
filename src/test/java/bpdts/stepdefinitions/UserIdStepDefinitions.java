@@ -57,4 +57,16 @@ public class UserIdStepDefinitions {
         }
     }
 
+    @Given("^the user id api content-type is application/json$")
+    public void assertContentType(){
+        LOG.debug("uri: " + uri);
+
+        RestAssured.given()
+                .when()
+                .get(uri)
+                .then()
+                .assertThat()
+                .header("content-type", "application/json");
+    }
+
 }

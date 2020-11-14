@@ -5,3 +5,6 @@ Feature: Users API request
 
   Scenario: Response matches the agreed schema
     Given the users api response matches the schema
+
+  Scenario: Header Content-type is application/json
+    Given the users api content-type is application/json
