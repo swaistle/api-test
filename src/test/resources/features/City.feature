@@ -1,5 +1,6 @@
 Feature: City API request
 
+  @smoke
   Scenario: Status code is 200
     Given the city api status code is 200
 

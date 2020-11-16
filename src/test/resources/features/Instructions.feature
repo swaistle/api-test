@@ -1,5 +1,6 @@
 Feature: Instructions API request
 
+  @smoke
   Scenario: Status code is 200
     Given the instructions api status code is 200
 
