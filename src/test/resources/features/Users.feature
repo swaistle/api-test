@@ -1,5 +1,6 @@
 Feature: Users API request
 
+  @smoke
   Scenario: Status code is 200
     Given the users api status code is 200
 

@@ -1,8 +1,10 @@
 Feature: User Id API request
 
+  @smoke
   Scenario: Status code is 200
     Given the user id api status code is 200
 
+  @smoke
   Scenario: Status code is 404
     Given the user id api status code is 404
 
