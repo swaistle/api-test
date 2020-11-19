@@ -7,12 +7,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
@@ -22,7 +20,6 @@ public class CityStepDefinitions {
     public String uri = Environment.getAppUrl() + "/city/%s/users";
 
     public Response response;
-    private ValidatableResponse json;
 
     @Given("I make a request for a city")
     public void randomRequest(){

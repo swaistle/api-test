@@ -1,8 +1,6 @@
 package bpdts.stepdefinitions;
 
-import bpdts.pages.EncodeString;
 import bpdts.pages.Environment;
-import bpdts.pages.RandomCityGenerator;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
