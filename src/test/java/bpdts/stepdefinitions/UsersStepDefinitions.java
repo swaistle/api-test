@@ -2,8 +2,9 @@ package bpdts.stepdefinitions;
 
 import bpdts.pages.Environment;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.Test;
+import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,36 +15,33 @@ public class UsersStepDefinitions {
 
     public String uri = Environment.getAppUrl() + "/users";
 
-    @Given("the users api status code is 200")
-    public void assertStatusEquals200() {
+    public Response response;
+
+    @Given("I make a request for the users api")
+    public void usersRequest() {
         LOG.debug("uri: " + uri);
-        RestAssured.given()
+        response = RestAssured.given()
                 .when()
-                .get(uri)
-                .then()
+                .get(uri);
+    }
+
+    @Then("the users api status code is 200")
+    public void assertStatusEquals200() {
+        response.then()
                 .assertThat()
                 .statusCode(200);
     }
 
-    @Given("the users api response matches the schema")
+    @Then("the users api response matches the schema")
     public void assertSchema() {
-        LOG.debug("uri: " + uri);
-        RestAssured.given()
-                .when()
-                .get(uri)
-                .then()
+        response.then()
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schemas/UsersSchema.json"));
     }
 
-    @Given("^the users api content-type is application/json$")
+    @Then("^the users api content-type is application/json$")
     public void assertContentType(){
-        LOG.debug("uri: " + uri);
-
-        RestAssured.given()
-                .when()
-                .get(uri)
-                .then()
+        response.then()
                 .assertThat()
                 .header("content-type", "application/json");
     }
