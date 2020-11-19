@@ -27,6 +27,7 @@ public class InstructionsStepDefinitions {
                 .when()
                 .get(uri);
     }
+
     @Then("the instructions api status code is 200")
     public void assertStatusEquals200() {
         response.then()
