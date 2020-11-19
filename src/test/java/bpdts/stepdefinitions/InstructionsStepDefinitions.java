@@ -4,7 +4,9 @@ import bpdts.pages.EncodeString;
 import bpdts.pages.Environment;
 import bpdts.pages.RandomCityGenerator;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,49 +18,41 @@ public class InstructionsStepDefinitions {
 
     public String uri = Environment.getAppUrl() + "/instructions";
 
-    @Given("the instructions api status code is 200")
-    public void assertStatusEquals200() {
+    public Response response;
+
+    @Given("I make a request for the instructions api")
+    public void instructionsRequest() {
         LOG.debug("uri: " + uri);
-        RestAssured.given()
+        response = RestAssured.given()
                 .when()
-                .get(uri)
-                .then()
+                .get(uri);
+    }
+    @Then("the instructions api status code is 200")
+    public void assertStatusEquals200() {
+        response.then()
                 .assertThat()
                 .statusCode(200);
     }
 
-    @Given("the instructions api response is as expected")
+    @Then("the instructions api response is as expected")
     public void assertResponse() {
-        LOG.debug("uri: " + uri);
-        RestAssured.given()
-                .when()
-                .get(uri)
-                .then()
+        response.then()
                 .assertThat()
                 .body("todo",
                         equalTo("Create a short automated test for this API. Check that the data returned by the API is valid, and that ensure that each valid operation can be successfully called for each endpoint. Once you've built the tests, push the answer to Github or Gitlab, and send us a link. "));
     }
 
-    @Given("the instructions api response matches the schema")
+    @Then("the instructions api response matches the schema")
     public void assertSchema() {
-        LOG.debug("uri: " + uri);
-        RestAssured.given()
-                .when()
-                .get(uri)
-                .then()
+        response.then()
                 .assertThat()
                 .body(matchesJsonSchemaInClasspath("schemas/InstructionsSchema.json"));
     }
 
 
-    @Given("^the instructions api content-type is application/json$")
+    @Then("^the instructions api content-type is application/json$")
     public void assertContentType(){
-        LOG.debug("uri: " + uri);
-
-        RestAssured.given()
-                .when()
-                .get(uri)
-                .then()
+        response.then()
                 .assertThat()
                 .header("content-type", "application/json");
     }
